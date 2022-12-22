@@ -6,6 +6,10 @@ export const CHAIN_IDS = [
   420, //goerli
   56, //bsc
   137, // polygon
+  42161, // arbitrum
+  43114, //ava
+  250, //fantom,
+  420, //OP
   128, // HECO
 ]
 

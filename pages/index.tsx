@@ -24,7 +24,10 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Typography variant="h4" component="h2">
-          Call any contract with ABI
+          Call any Solidity EVM contract with ABI
+        </Typography>
+        <Typography variant="body1" component="h2">
+          Supports all EVM compatible chains
         </Typography>
         <Web3Provider>
           <Connect>
