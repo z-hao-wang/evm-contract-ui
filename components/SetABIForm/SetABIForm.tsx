@@ -12,6 +12,7 @@ function createInput(formName: string, input: {internalType: string, name: strin
     case 'address':
     case 'string':
     case 'bytes':
+    case 'bytes32':
       return {type: "TextInput", name: `${formName}-${inputName}`,label:inputName, inputType:'text', helperText: `${internalType} - ${type}`  } as TextInputConfig
     case 'address[]':
     case 'bytes[]':
