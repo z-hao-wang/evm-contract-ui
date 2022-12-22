@@ -27,7 +27,8 @@ export default function Home() {
           Call any Solidity EVM contract with ABI
         </Typography>
         <Typography variant="body1" component="h2">
-          Supports all EVM compatible chains
+          Supports all EVM compatible chains <br/>
+          <b>This tool is beta, use at your own risk</b>
         </Typography>
         <Web3Provider>
           <Connect>
