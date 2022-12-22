@@ -19,7 +19,7 @@ jobs:
 
       - name: Build
         run: |
-          npm ci
+          yarn --frozen-lockfile
           npm run build
           npm run export
           touch out/.nojekyll
