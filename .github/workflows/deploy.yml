@@ -14,7 +14,6 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          # update the Node version to meet your needs
           node-version: 16
           cache: npm
 
@@ -25,7 +24,7 @@ jobs:
           npm run export
           touch out/.nojekyll
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@latest
+        uses: JamesIves/github-pages-deploy-action@4.4.1
         with:
           branch: gh-pages
           folder: out
