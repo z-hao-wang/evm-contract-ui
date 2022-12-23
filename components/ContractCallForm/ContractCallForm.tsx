@@ -50,7 +50,7 @@ const ContractCallForm =({abi,contractAddress, formConfigs, setFormConfigs}: {ab
         (formConfig as any).result = res;
       } catch(e) {
         console.error(e);
-        setAlert({type: 'error', title: 'Call failed', text: `${(e as any).toString()}`})
+        setAlert({type: 'error', title: 'Call failed', text: `${(e as any).message || (e as any).toString()}`})
       }
     } else {
       console.log(`calling write method`, formConfig);
@@ -63,7 +63,7 @@ const ContractCallForm =({abi,contractAddress, formConfigs, setFormConfigs}: {ab
         await func(...params).send({from: account});
       } catch(e) {
         console.log(`estimateGas failure`, e);
-        setAlert({type: 'error', title: 'Call failed', text: `${(e as any).toString()}`})
+        setAlert({type: 'error', title: 'Call failed', text: `${(e as any).message || (e as any).toString()}`})
       }
     }
     setFormConfigs(formConfigsCopy);
