@@ -16,11 +16,15 @@ function createInput(formName: string, input: {internalType: string, name: strin
       return {type: "TextInput", name: `${formName}-${inputName}`,label:inputName, inputType:'text', helperText: `${internalType} - ${type}`  } as TextInputConfig
     case 'address[]':
     case 'bytes[]':
+    case 'uint256[]':
       return {type: "TextInput", name: `${formName}-${inputName}`,label:inputName, inputType:'text', helperText: `${internalType} - ${type} comma separated`  } as TextInputConfig
     case 'bool':
       return {type: "Checkbox", name: `${formName}-${inputName}`,label:inputName } as CheckboxConfig
 
     default:
+      if (type.match(/\[\]$/)) {
+        return {type: "TextInput", name: `${formName}-${inputName}`,label:inputName, inputType:'text', helperText: `${internalType} - ${type} comma separated`  } as TextInputConfig
+      }
       return {type: 'Title', label: `unsupported input ${formName}-${inputName} type ${internalType}`} as FormRowConfig;
   }
 }
