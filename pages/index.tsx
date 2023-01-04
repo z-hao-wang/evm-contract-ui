@@ -4,7 +4,10 @@ import Typography from "@mui/material/Typography";
 import Connect from '../components/Connect/Connect'
 import SetABIForm from '../components/SetABIForm/SetABIForm'
 import ContractCallForm from '../components/ContractCallForm/ContractCallForm'
+import DecodeCallForm from '../components/DecodeCallForm/DecodeCallForm'
 import React, { useState } from "react";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import {FormRowConfig} from "../utils/GenericformHelper";
 import Web3Provider from "../components/Web3Provider/Web3Provider";
 import AccountInfo from "../components/AccountInfo/AccountInfo";
@@ -23,6 +26,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Box sx={{position: 'absolute', top: 12, right: 12}}>
+          <Link href="/conversion">Conversion tools</Link>
+        </Box>
         <Typography variant="h4" component="h2">
           Call any Solidity EVM contract with ABI
         </Typography>
@@ -35,6 +41,7 @@ export default function Home() {
             <AccountInfo />
             <SetABIForm setAbi={setAbi} setAddress={setContractAddress} setFormConfigs={setFormConfigs} />
             <ContractCallForm abi={abi} contractAddress={contractAddress} formConfigs={formConfigs} setFormConfigs={setFormConfigs} />
+            <DecodeCallForm abi={abi} />
           </Connect>
         </Web3Provider>
       </main>
