@@ -45,9 +45,11 @@ const ContractCallForm =({abi,contractAddress, formConfigs, setFormConfigs}: {ab
     const func = contractInstance.methods[methodName];
     if (formConfig.stateMutability === 'view') {
       try {
-        const res = await func().call();
+        const params = getFormValues({methodName, abi, formValues});
+        console.log(`read call params`, params)
+        const res = await func(...params).call();
         console.log(`call res`, res);
-        (formConfig as any).result = res;
+        (formConfig as any).result = res.toString();
       } catch(e) {
         console.error(e);
         setAlert({type: 'error', title: 'Call failed', text: `${(e as any).message || (e as any).toString()}`})
@@ -55,7 +57,7 @@ const ContractCallForm =({abi,contractAddress, formConfigs, setFormConfigs}: {ab
     } else {
       console.log(`calling write method`, formConfig);
       console.log(`formValues`, formValues)
-      const params =getFormValues({methodName, abi, formValues});
+      const params = getFormValues({methodName, abi, formValues});
       console.log(`write call params`, params)
       try {
         const estimateGas = await func(...params).estimateGas({ from: account });
