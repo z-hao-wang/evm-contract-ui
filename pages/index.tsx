@@ -28,6 +28,7 @@ export default function Home() {
       <main className={styles.main}>
         <Box sx={{position: 'absolute', top: 12, right: 12}}>
           <Link href="./conversion">Conversion tools</Link>
+          <Link href="./decode-tx">Decode tx tool</Link>
         </Box>
         <Typography variant="h4" component="h2">
           Call any Solidity EVM contract with ABI
