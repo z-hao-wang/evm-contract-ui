@@ -23,7 +23,7 @@ export async function estimateAndCall(params: {
   }
 
   if (estimateSuccess && !paperTrading) {
-    const callingRes = await func.{ from: account});
+    const callingRes = await func.send({ from: account});
     if (callingRes && callingRes.events) {
       delete callingRes.events;
       delete callingRes.logsBloom;
