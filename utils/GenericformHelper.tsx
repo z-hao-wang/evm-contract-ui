@@ -52,7 +52,7 @@ export interface SubmitConfig {
   name?: string;
   result?: string;
   label: string;
-  stateMutability: 'view' | 'nonpayable';
+  stateMutability: 'view' | 'pure' | 'nonpayable';
   variant?: "outlined" | "contained" | "text";
 }
 
