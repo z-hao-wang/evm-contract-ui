@@ -59,7 +59,7 @@ const SetABIForm =({setFormConfigs, setAbi, setAddress}: {setFormConfigs: (formC
       inputs && inputs.forEach((input: {internalType: string, name: string, type: string}) => {
         formConfigsTmp.push(createInput(name, input))
       })
-      if (stateMutability === 'view') {
+      if (stateMutability === 'view' || stateMutability === 'pure') {
         formConfigsTmp.push({
           type: 'SubmitButton',
           label: 'Read',

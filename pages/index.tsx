@@ -41,7 +41,7 @@ export default function Home() {
           <Connect>
             <AccountInfo />
             <SetABIForm setAbi={setAbi} setAddress={setContractAddress} setFormConfigs={setFormConfigs} />
-            <ContractCallForm abi={abi} contractAddress={contractAddress} formConfigs={formConfigs} setFormConfigs={setFormConfigs} />
+            <ContractCallForm abi={abi} contractAddress={contractAddress} formConfigs={formConfigs} />
             <DecodeCallForm abi={abi} />
           </Connect>
         </Web3Provider>

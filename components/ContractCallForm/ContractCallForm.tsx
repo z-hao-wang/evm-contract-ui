@@ -53,7 +53,7 @@ function getFormValues({formValues, abi, methodName}: {formValues: Record<string
   }
   return [];
 }
-const ContractCallForm =({abi,contractAddress, formConfigs, setFormConfigs}: {abi: any[],contractAddress:string, setFormConfigs: (formConfigs:FormRowConfig[]) => any, formConfigs: FormRowConfig[]}) => {
+const ContractCallForm =({abi,contractAddress, formConfigs}: {abi: any[],contractAddress:string, formConfigs: FormRowConfig[]}) => {
   const [formValues, setFormValues] = useState({});
   const { account, library, chainId } = useWeb3React();
   const { setAlert } = useAlert();
@@ -67,8 +67,7 @@ const ContractCallForm =({abi,contractAddress, formConfigs, setFormConfigs}: {ab
       abi,
       contractAddress
     );
-    const formConfigsCopy = formConfigs.splice(0);
-    const formConfig: SubmitConfig | undefined = formConfigsCopy.find(f => (f as any).name  === methodName) as any;
+    const formConfig: SubmitConfig | undefined = formConfigs.find(f => (f as any).name  === methodName) as any;
     if (!formConfig) {
       console.error(`cannot find formConfig for ${methodName}`);
       return;
@@ -80,7 +79,7 @@ const ContractCallForm =({abi,contractAddress, formConfigs, setFormConfigs}: {ab
         console.log(`read call params`, params)
         const res = await func(...params).call();
         console.log(`call res`, res);
-        (formConfig as any).result = res.toString();
+        setFormValues({...formValues, [methodName]: res});
       } catch(e) {
         console.error(e);
         setAlert({type: 'error', title: 'Call failed', text: `${(e as any).message || (e as any).toString()}`})
@@ -102,7 +101,6 @@ const ContractCallForm =({abi,contractAddress, formConfigs, setFormConfigs}: {ab
         setAlert({type: 'error', title: 'Call failed', text: `${(e as any).message || (e as any).toString()}`})
       }
     }
-    setFormConfigs(formConfigsCopy);
   }
 
   const abiForms = formConfigs.map((formConfig, i)=> {

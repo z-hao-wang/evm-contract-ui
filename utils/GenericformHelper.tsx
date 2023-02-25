@@ -50,7 +50,6 @@ export interface CheckboxConfig {
 export interface SubmitConfig {
   type: "SubmitButton";
   name?: string;
-  result?: string;
   label: string;
   stateMutability: 'view' | 'pure' | 'nonpayable';
   variant?: "outlined" | "contained" | "text";
@@ -158,13 +157,13 @@ export function createFormField(
         </Typography>
       );
     case "SubmitButton":
-      const { variant, name, result } = formConf;
+      const { variant, name } = formConf as SubmitConfig;
+      const btn = <Button name={name} type="submit" variant={variant}>
+        {formConf.label}
+      </Button>
       return (
         <Box>
-          {result && <pre>{result}</pre>}
-          <Button name={name} type="submit" variant={variant}>
-            {formConf.label}
-          </Button>
+          {name && formValues[name] ? <pre>{formValues[name]}</pre> : btn}
         </Box>
       );
   }
