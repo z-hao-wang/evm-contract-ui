@@ -12,7 +12,10 @@ import { Transaction, parse } from '@ethersproject/transactions';
 function decodeEip1559Tx(rawTx: string) {
   const tx: any = parse(rawTx);
   for (let key in tx) {
-    if (typeof tx[key] === 'object' && tx[key] && tx[key].toString) {
+    if (typeof tx[key] === 'object' && tx[key] && tx[key].length) {
+      tx[key] = (tx[key])
+    }
+    else if (typeof tx[key] === 'object' && tx[key] && tx[key].toString) {
       tx[key] = tx[key].toString();
     }
   }
@@ -24,6 +27,7 @@ export default function DecodeTx() {
   const decodeTx = () => {
     try {
       const decoded = rawTx.match(/^0x02/) ? decodeEip1559Tx(rawTx) : txDecoder.decodeTx(rawTx);
+      console.log("decoded", decoded);
       setRes(JSON.stringify(decoded, null, 4));
     } catch(e) {
       setRes(e && (e as any).toString());
