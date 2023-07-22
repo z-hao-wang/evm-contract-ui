@@ -21,7 +21,7 @@ export default function Conversion() {
   }
 
   const convertHexToUint = () => {
-    setRes(new BN(val, 'hex').toString());
+    setRes(new BN(val.replace(/^0x/, ''), 'hex').toString());
   }
   return (
     <AlertProvider>
