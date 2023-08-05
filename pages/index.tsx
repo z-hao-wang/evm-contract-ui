@@ -27,7 +27,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Box sx={{position: 'absolute', top: 12, right: 12}}>
-          <Link href="./conversion">Conversion tools</Link>
+          <Link href="./conversion">Conversion tools</Link> &nbsp;
           <Link href="./decode-tx">Decode tx tool</Link>
         </Box>
         <Typography variant="h4" component="h2">

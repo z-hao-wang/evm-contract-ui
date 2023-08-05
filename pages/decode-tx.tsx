@@ -6,27 +6,14 @@ import React, { useState } from "react";
 import AlertProvider from "../components/AlertGlobal/AlertProvider";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import Button from "@mui/material/Button";
-const txDecoder = require('ethereum-tx-decoder');
-import { Transaction, parse } from '@ethersproject/transactions';
+import {utils} from "ethers";
 
-function decodeEip1559Tx(rawTx: string) {
-  const tx: any = parse(rawTx);
-  for (let key in tx) {
-    if (typeof tx[key] === 'object' && tx[key] && tx[key].length) {
-      tx[key] = (tx[key])
-    }
-    else if (typeof tx[key] === 'object' && tx[key] && tx[key].toString) {
-      tx[key] = tx[key].toString();
-    }
-  }
-  return tx;
-}
 export default function DecodeTx() {
   const [rawTx, setRawTx] = useState('');
   const [res, setRes] = useState('');
   const decodeTx = () => {
     try {
-      const decoded = rawTx.match(/^0x02/) ? decodeEip1559Tx(rawTx) : txDecoder.decodeTx(rawTx);
+      const decoded = utils.parseTransaction(rawTx);
       console.log("decoded", decoded);
       setRes(JSON.stringify(decoded, null, 4));
     } catch(e) {
