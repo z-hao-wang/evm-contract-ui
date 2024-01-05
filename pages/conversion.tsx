@@ -23,6 +23,10 @@ export default function Conversion() {
   const convertHexToUint = () => {
     setRes(new BN(val.replace(/^0x/, ''), 'hex').toString());
   }
+  const restoreShift4 = () => {
+    setRes(new BN(val.replace(/^0x/, '').substring(0, 4), 'hex').shln(parseInt(val.substring(val.length - 2), 16)).toString());
+  }
+
   return (
     <AlertProvider>
       <Head>
@@ -54,6 +58,7 @@ export default function Conversion() {
           <Box sx={{padding: 2, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <Button disabled={!val} onClick={convertUintToHex} variant="contained">Uint to hex</Button>
             <Button sx={{marginLeft: 4}} disabled={!val} onClick={convertHexToUint} variant="contained">Hex to uint</Button>
+            <Button sx={{marginLeft: 4}} disabled={!val} onClick={restoreShift4} variant="contained">Restore Shift4</Button>
           </Box>
         </ValidatorForm>
 
