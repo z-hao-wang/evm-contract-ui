@@ -31,7 +31,7 @@ export default function Conversion() {
   const sqrtX96ToDecimal = () => {
     const priceSquareRoot = parseInt(val) / Q96NumberDecimal;
     const retBigNumber = priceSquareRoot * priceSquareRoot;
-    return retBigNumber;
+    setRes(retBigNumber.toString());
   }
 
   return (
