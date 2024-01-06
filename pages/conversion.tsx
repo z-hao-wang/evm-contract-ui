@@ -27,6 +27,13 @@ export default function Conversion() {
     setRes(new BN(val.replace(/^0x/, '').substring(0, 4), 'hex').shln(parseInt(val.substring(val.length - 2), 16)).toString());
   }
 
+  const Q96NumberDecimal = Math.pow(2, 96);
+  const sqrtX96ToDecimal = () => {
+    const priceSquareRoot = parseInt(val) / Q96NumberDecimal;
+    const retBigNumber = priceSquareRoot * priceSquareRoot;
+    return retBigNumber;
+  }
+
   return (
     <AlertProvider>
       <Head>
@@ -59,6 +66,7 @@ export default function Conversion() {
             <Button disabled={!val} onClick={convertUintToHex} variant="contained">Uint to hex</Button>
             <Button sx={{marginLeft: 4}} disabled={!val} onClick={convertHexToUint} variant="contained">Hex to uint</Button>
             <Button sx={{marginLeft: 4}} disabled={!val} onClick={restoreShift4} variant="contained">Restore Shift4</Button>
+            <Button sx={{marginLeft: 4}} disabled={!val} onClick={sqrtX96ToDecimal} variant="contained">SqrtX96 To Decimal</Button>
           </Box>
         </ValidatorForm>
 
